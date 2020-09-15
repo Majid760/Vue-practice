@@ -1,8 +1,17 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from 'vue';
+import App from './App.vue';
 
-Vue.config.productionTip = false
+import Header from './components/header-footer/Header.vue';
+Vue.component('compHeader',Header);
+import Footer from './components/header-footer/Footer.vue';
+Vue.component('compFooter',Footer);
 
+
+export const bus = new Vue();
 new Vue({
-  render: h => h(App),
-}).$mount('#app')
+    el:'#app',
+    data:{
+    },
+    render:h=>h(App),
+})
+

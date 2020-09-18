@@ -1,11 +1,10 @@
 import Vue from 'vue';
 import App from './App.vue';
 
-import Header from './components/header-footer/Header.vue';
-Vue.component('compHeader',Header);
-import Footer from './components/header-footer/Footer.vue';
-Vue.component('compFooter',Footer);
-
+import Header from './components/Header.vue';
+Vue.component('app-header',Header);
+import Footer from './components/Footer.vue';
+Vue.component('app-footer',Footer);
 
 export const bus = new Vue();
 new Vue({

@@ -1,111 +1,126 @@
-import Vue from 'vue';
-import App from './App.vue';
-
 <template>
-<div class="main">
-    <compHeader></compHeader>
+<div>
+    <app-header></app-header>
+    <div class="wrapper">
+        <div class="container">
+            <form>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1>Contact Us</h1>
+                        <hr>
+                        <div class="form-group">
+                            <label for="name">First Name:</label>
+                            <input type="text" v-model.lazy="formData.firstName" name="fname" id="name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Last Name:</label>
+                            <input type="text" v-model.lazy="formData.lastName" name="lname" id="name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Subject:</label>
+                            <input type="text" v-model.lazy="formData.subject" name="subject" id="name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Message:</label>
+                            <textarea class="form-control" v-model.lazy="formData.message" name="message" rows="4">
+                            </textarea>
+                        </div>
 
-    <div class="container">
-        <h2>This is main Content Area</h2>
-        <compUserProfile :fname="firstName" :lname="lastName" :email="email" :phone="ph" :parent="parent" :arr="arr" @update="firstName=$event" :updateLastName="updateLastName"></compUserProfile>
-        <compUserFriend></compUserFriend>
-        <compHability>
+                        <div class="form-group">
+                            <label for="newsletter">Newsletter:</label>
+                            <input type="checkbox" v-model="formData.extras" id="newsletter" value="Newsletter">
+                            <label for="promotion">Promotion:</label>
+                            <input type="checkbox" v-model="formData.extras" id="promotion" value="Promotion">
+                            {{ formData.extras }}
+                        </div>
+                        <hr>
 
-            <div :slot="slotName">
-                other content:
-            </div>
-            <ul>
-                <li v-for="(value,key,index) in hab" :key="index">
-                    {{ value }}
-                </li>
+                        <div class="form-group">
+                            <label for="human">Human:</label>
+                            <input type="radio" id="human" value="human" v-model="formData.gender">
 
-            </ul>
-            <div slot="heading">
-                <h1> this is my favorite place where i can earn bundle of points</h1>
-            </div>
-            <div slot="para">
-                <p>lorem ipsum issidf idfidf difdfid fdifdifj difd ifidfjdifji</p>
-            </div>
-            <ul>
-                <li v-for="(value,key,index) in hab" :key="index">
-                    {{ value }}
-                </li>
-            </ul>
-        </compHability>
+                            <label for="human">Alien:</label>
+                            <input type="radio" id="alien" value="alien" v-model="formData.gender">
+                        </div>
+
+                        <hr>
+                        <div class="form-group">
+                            <label for="country">Select Country:</label>
+                            <select class="form-control" name="country" value="country" v-model="formData.country">
+                                <option v-for="(value,key,index) in countries" :key="index">
+                                    {{ value }}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary" @click.prevent="submitForm">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <compFooter></compFooter>
+    <app-footer></app-footer>
 </div>
 </template>
 
 <script>
-import compUserProfile from './components/user/User-Profile.vue';
-import compUserFriend from './components/user/Friend.vue';
-import compHability from './components/user/Habilities.vue';
 export default {
+
     data() {
         return {
-            firstName: "Majid",
-            lastName: "Ali Khan",
-            email: "email@gmail.com",
-            ph: 2330,
-            parent: {
-                father: "John Smith",
-                mother: "Elia Joseph"
-            },
-            arr: [
-                'first semester',
-                'second semester',
-                'third semester',
-                'Fourth semester',
-                'Fifthe Semester',
-                'Sixthe semester',
-                'Seventh semester',
-                'eight semester',
+            countries: [
+                'Afghanistan',
+                'Austria',
+                'Australia',
+                'Argentina',
+                'Brazil',
+                'Canada',
+                'Denmark',
+                'Ethopia',
+                'England',
+                'France',
+                'Finland',
+                'Germany',
+                'Hungry',
+                'Iran',
+                'Ireland',
+                'Pakistan',
             ],
-            hab: [
-                'Node.js',
-                'Vue.js',
-                'SEO',
-                'Laravel',
-            ],
-            slotName: '',
 
+            formData: {
+                firstName: '',
+                lastName: '',
+                subject: '',
+                message: '',
+                extras: [],
+                gender: 'alien',
+                country: 'Afghanistan',
+            }
         }
     },
-    created() {
-        setTimeout(() => {
-            this.slotName = 'other';
-        }, 3000)
-    },
-
     methods: {
-        updateLastName(value) {
-            this.lastName = value;
-        }
-    },
+        submitForm() {
 
-    components: {
-        compUserProfile,
-        compUserFriend,
-        compHability
-    },
+            console.log(this.formData);
+            console.log(JSON.stringify(this.formData));
+
+        }
+    }
 
 }
 </script>
 
-<style scoped>
+<style>
 body {
     padding: 0px;
     margin: 0px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', Courier, monospace;
 }
 
-.container {
+.wrapper {
     min-height: 85vh;
     box-sizing: border-box;
-    padding: 10px;
-    background-color: rgba(12, 51, 160, 0.267);
-    font-size: 20px;
+    background-color: rgb(50, 190, 45);
 }
 </style>

@@ -1,62 +1,79 @@
 <template>
-<div>
-    <div class="wrapper">
-        <div class="container">
-            <form>
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h1>Contact Us</h1>
-                        <hr>
-                        <div class="form-group">
-                            <label for="name">First Name:</label>
-                            <input type="text" v-model.lazy="formData.firstName" name="fname" id="name" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Last Name:</label>
-                            <input type="text" v-model.lazy="formData.lastName" name="lname" id="name" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Subject:</label>
-                            <input type="text" v-model.lazy="formData.subject" name="subject" id="name" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Message:</label>
-                            <textarea class="form-control" v-model.lazy="formData.message" name="message" rows="4">
-                            </textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="newsletter">Newsletter:</label>
-                            <input type="checkbox" v-model="formData.extras" id="newsletter" value="Newsletter">
-                            <label for="promotion">Promotion:</label>
-                            <input type="checkbox" v-model="formData.extras" id="promotion" value="Promotion">
-                            {{ formData.extras }}
-                        </div>
-                        <hr>
-
-                        <div class="form-group">
-                            <label for="human">Human:</label>
-                            <input type="radio" id="human" value="human" v-model="formData.gender">
-
-                            <label for="human">Alien:</label>
-                            <input type="radio" id="alien" value="alien" v-model="formData.gender">
-                        </div>
-
-                        <hr>
-                        <div class="form-group">
-                            <label for="country">Select Country:</label>
-                            <select class="form-control" name="country" value="country" v-model="formData.country">
-                                <option v-for="(value,key,index) in countries" :key="index">
-                                    {{ value }}
-                                </option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary" @click.prevent="submitForm">Submit</button>
-                        </div>
+<div class="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <form class="form was-validated">
+                    <div class="form-group">
+                        <label for="uname">First Name:</label>
+                        <input type="text" v-model.lazy="formData.fname" class="form-control" id="uname" placeholder="Enter first name" required>
                     </div>
-                </div>
-            </form>
+                    <div class="form-group">
+                        <label for="uname">Last Name:</label>
+                        <input type="text" v-model.lazy="formData.lname" class="form-control" id="uname" placeholder="Enter last name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="uname">Email:</label>
+                        <input type="email" v-model.lazy="formData.email" class="form-control" id="uname" placeholder="Enter email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" class="form-control" id="pwd" placeholder="Enter password" v-model.lazy="formData.password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd">Confirm Password:</label>
+                        <input type="password" class="form-control" id="pwd" placeholder="Confirm password" v-model.lazy="formData.confirmPassword" required>
+                        <label class="custom-control-label text-danger" for="customCheck">{{ validMsg }}</label>
+                    </div>
+                    <hr>
+                    <!-- radio button (Gender section) -->
+                    <label for="pwd">Gender:</label>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" v-model="formData.gender" value="female">Female
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" v-model="formData.gender" value="male">Male
+                        </label>
+                    </div>
+                    <div class="form-check disabled">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" v-model="formData.gender" value="other">Other's
+                        </label>
+                    </div>
+                    <hr>
+                    {{ formData.gender }}
+                    <hr>
+                    <!-- checkbox (Education section) -->
+                    <label for="pwd">Education:</label>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" value="primary" v-model="formData.edu">Primary
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" value="middle" v-model="formData.edu">Middle
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" value="matric" v-model="formData.edu">Matric
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input" value="Inter" v-model="formData.edu">Intermediate
+                        </label>
+                    </div>
+                    <hr>
+                    {{ formData.edu }}
+                    <hr>
+                    <button type="submit" class="btn btn-primary" @click.prevent="submitForm">Submit</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
@@ -67,58 +84,37 @@ export default {
 
     data() {
         return {
-            countries: [
-                'Afghanistan',
-                'Austria',
-                'Australia',
-                'Argentina',
-                'Brazil',
-                'Canada',
-                'Denmark',
-                'Ethopia',
-                'England',
-                'France',
-                'Finland',
-                'Germany',
-                'Hungry',
-                'Iran',
-                'Ireland',
-                'Pakistan',
-            ],
-
             formData: {
-                firstName: '',
-                lastName: '',
-                subject: '',
-                message: '',
-                extras: [],
-                gender: 'alien',
-                country: 'Afghanistan',
-            }
+                fname: '',
+                lname: '',
+                email: '',
+                password: '',
+                confirmPassword: '',
+                gender: '',
+                edu: [],
+            },
+            validMsg: '',
+
         }
     },
     methods: {
-        submitForm() {
+        submitForm(e) {
 
+            this.validMsg = (this.formData.password != this.formData.confirmPassword) ? 'Please provide the same password' : '';
+            e.preventDefault();
             console.log(this.formData);
             console.log(JSON.stringify(this.formData));
-
         }
     }
 
 }
 </script>
 
-<style>
-body {
-    padding: 0px;
-    margin: 0px;
-    font-family: 'Roboto', Courier, monospace;
-}
-
+<style scoped>
 .wrapper {
-    min-height: 85vh;
-    box-sizing: border-box;
-    background-color: rgb(50, 190, 45);
+    font-family: "Helvetica Neue", Helvetica;
+    font-synthesis: 20px;
+    background: rgb(51, 221, 170);
+    padding: 20px;
 }
 </style>

@@ -1,7 +1,12 @@
 <template>
-<div class="container">
-    <h1 class="text-primary">Home</h1>
-    <p class="text-primary">lorem ipsum dolor sit amet, consectet</p>
+<div class="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <h1>this is home page!</h1>
+            </div>
+        </div>
+    </div>
 </div>
 </template>
 
@@ -12,5 +17,8 @@ export default {
 </script>
 
 <style scoped>
-
+.wrapper {
+    background: rgb(51, 221, 65);
+    padding: 20px;
+}
 </style>

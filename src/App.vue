@@ -3,36 +3,35 @@
     <app-header></app-header>
     <div class="wrapper">
         <div class="container">
-            <div class="">
-                <button class="btn btn-primary " @click="renderComp='compHome'">Home</button>
-                <button class="btn btn-danger mx-2" @click="renderComp='compAbount'">About</button>
-                <button class="btn btn-success" @click="renderComp='compContact'">Contact</button>
-            </div>
-            <keep-alive>
-                <component :is="renderComp"></component>
-            </keep-alive>
+            <button class="btn btn-success" @click="renderComp='compHome'">Home</button>
+            <button class="btn btn-info mx-3" @click="renderComp='compContact'">Contact</button>
+            <button class="btn btn-warning" @click="renderComp='compAbout'">About</button>
         </div>
+        <keep-alive>
+            <component :is="renderComp"></component>
+        </keep-alive>
     </div>
     <app-footer></app-footer>
 </div>
 </template>
 
 <script>
-import compContact from './components/Contact.vue';
-import compAbount from './components/About.vue';
 import compHome from './components/Home.vue';
+import compAbout from './components/About.vue';
+import compContact from './components/Contact.vue';
+
 export default {
 
     data() {
         return {
-            renderComp: 'compContact'
+            renderComp: 'compHome'
 
         }
     },
     components: {
-        compContact,
-        compAbount,
-        compHome
+        compHome,
+        compAbout,
+        compContact
     },
     methods: {
 
